@@ -19,29 +19,36 @@ function formatData(rawData) {
 google.load("visualization", '1', { packages: ['table'] });
 google.load("gdata", "2");
 google.setOnLoadCallback(getMyFeed);
-var feedUrl = "https://spreadsheets.google.com/feeds/worksheets/1wfXNfC12hEkqyJhqYmvQPJgeuQyTXLQdWTQfMp6aONI/private/basic";
+//var feedUrl = "https://spreadsheets.google.com/feeds/worksheets/1wfXNfC12hEkqyJhqYmvQPJgeuQyTXLQdWTQfMp6aONI/private/basic";
 
-function setupMyService() {
-    var myService = new google.gdata.spreadsheet.SpreadsheetService('exampleCo-exampleApp-1');
-    return myService;
-}
+//function setupMyService() {
+//    var myService = new google.gdata.spreadsheet.SpreadsheetService('exampleCo-exampleApp-1');
+//    return myService;
+//}
 
-function getMyFeed() {
-    myService = setupMyService();
+//function getMyFeed() {
+//    myService = setupMyService();
 
-    myService.getEventsFeed(feedUrl, handleMyFeed, handleError);
-}
+//    myService.getEventsFeed(feedUrl, handleMyFeed, handleError);
+//}
 
-function handleMyFeed(myResultsFeedRoot) {
-    alert("This feed's title is: " + myResultsFeedRoot.feed.getTitle().getText());
-}
+//function handleMyFeed(myResultsFeedRoot) {
+//    alert("This feed's title is: " + myResultsFeedRoot.feed.getTitle().getText());
+//}
 
-function handleError(e) {
-    alert("There was an error!");
-    alert(e.cause ? e.cause.statusText : e.message);
-}
+//function handleError(e) {
+//    alert("There was an error!");
+//    alert(e.cause ? e.cause.statusText : e.message);
+//}
 
-
+var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyjThUtpDYpKMS3jhbY92_8OXUrPQaqbbB-1Rh3ksI/exec";
+$(document).ready(function () {
+    $.getJSON(SCRIPT_URL + "?callback=?",
+              { method: "populate_list" },
+              function (data) {
+                  alert(JSON.stringify(data));
+              });
+});
 
 
 
